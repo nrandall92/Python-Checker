@@ -1,3 +1,11 @@
+--Creates database
+--
+--
+
+DROP DATABASE IF EXISTS 'Python_Checker';
+CREATE DATABASE 'Python_Checker';
+USE DATABASE 'Python_Checker';
+
 -- Creates tables for login and projects
 --
 --
