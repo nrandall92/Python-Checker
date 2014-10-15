@@ -1,5 +1,5 @@
 from flask import Flask, render_template, request
-import readout
+
 
 app = Flask(__name__)
 
