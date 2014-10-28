@@ -27,19 +27,20 @@ CREATE TABLE Projects (
 );
 
 
-CREATE TABLE Output (
-	O_ID int(20) NOT NULL auto_increment,
-	Project_Name varchar(25) NOT NULL default '',
-	Output_1 varchar(45) default '',
-	Output_2 varchar(45) default '',
-	Output_3 varchar(45) default '',
-	Output_4 varchar(45) default '',
-	Output_5 varchar(45) default '',
-	Output_6 varchar(45) default '',
-	Output_7 varchar(45) default '',
-	Output_8 varchar(45) default '',
-	Output_9 varchar(45) default '',
-	Output_10, varchar(45) default '',
+CREATE TABLE Output 
+(
+	O_ID int(20) NOT NULL AUTO_INCREMENT,
+	Project_Name varchar(25) NOT NULL ,
+	Output_1 varchar(45),
+	Output_2 varchar(45),
+	Output_3 varchar(45),
+	Output_4 varchar(45),
+	Output_5 varchar(45),
+	Output_6 varchar(45),
+	Output_7 varchar(45),
+	Output_8 varchar(45),
+	Output_9 varchar(45),
+	Output_10 varchar(45),
 	PRIMARY KEY (O_ID)
 );
 
