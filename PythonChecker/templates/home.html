@@ -2,15 +2,14 @@
 <html>
 
 <head>
-  {% if username %}
-    <title>Hello {{username}}!</title>
-  {% else %}
+  
     <title>Python Checker</title>
-  {% endif %}
+
   <meta name="description" content="website description" />
   <meta name="keywords" content="website keywords, website keywords" />
   <meta http-equiv="content-type" content="text/html; charset=windows-1252" />
-  <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/style.css') }}" title="style" />
+  <link rel="stylesheet" type="text/css" href="style.css" title="style" />
+  <link rel="stylesheet" href="css/font-awesome.min.css">
 </head>
 
 <body>
@@ -27,38 +26,18 @@
         <ul id="menu">
           <!-- put class="selected" in the li tag for the selected page - to highlight which page you're on -->
           <li {% if selectedMenu == "Home" %} class="selected" {% endif %}>
-          <a href="/">Home</a></li>
-          
-          <li {% if selectedMenu == "Home" %} class="selected" {% endif %}><a href="/Login">Login</a></li>
-          <li {% if selectedMenu == "Admin" %} class="selected" {% endif %}><a href="/results">Results</a></li>
+          <a href="home.html">Home</a></li>
+          <!--{% if username %}
+            <li {% if selectedMenu == "Stock Report" %} class="selected" {% endif %}><a href="/stockReport">Stock Report</a></li>
+          {% endif %}-->
+          <li  class="selected" {% endif %}><a href="login.html">Admin</a></li>
+          <!--<li  class="selected" {% endif %}><a href="/login.html">Results</a></li> -->
           
         </ul>
       </div>
+
     </div>
     <div id="site_content">
-      Upload Your Project Here
-      <br><br>
-      <form action="">
-Choose Which Project You are submitting:
-       <select name="Projects">
-<option value="P1">Project 1</option>
-<option value="P2">Project 2</option>
-<option value="P3">Project 3</option>
-<option value="P4">Project 4</option>
-</select>
-</form>
-      
-     <br><br>
-      <form enctype="multipart/form-data" action="save_file.py" method="post">
-<p>Python File: <input type="file" name="file" value = "pyfile"></p>
-<br>
-      
-        <p><input type="submit" value="Upload" name ="Upload"></p>
-</form>
-      
-      
-      
-      
       <div class="sidebar">
         <!-- insert your sidebar items here -->
         
@@ -66,7 +45,32 @@ Choose Which Project You are submitting:
        
       
       </div>
-      
+	  <form name="input" action="processing.html" method="get">
+      	<b>Choose your project:</b></br></br>
+	 <select>
+ 		<option value="proj1">Project 1</option>
+		<option value="proj2">Project 2</option>
+ 		<option value="proj3">Project 3</option>
+ 		<option value="proj4">Project 4</option>
+	 </select> <script>
+function check_file(){
+                str=document.getElementById('fileToUpload').value.toUpperCase();
+        suffix=".JPG";
+        suffix2=".JPEG";
+        if(str.indexOf(suffix, str.length - suffix.length) == -1||
+                       str.indexOf(suffix2, str.length - suffix2.length) == -1){
+        alert('File type not allowed,\nAllowed file: *.jpg,*.jpeg');
+            document.getElementById('fileToUpload').value='';
+        }
+    }</script></br></br></br>
+	<b>Select your file:</b></br>
+	</br>
+  		<input type="file" accept=application/.py>
+		<!-- onchange="check_file()"-->
+ 		 <!--<input type="submit">--> 
+	</br></br></br>
+	<input type="submit" value="Submit">
+	</form>
     </div>
     <div id="content_footer"></div>
     <div id="footer">
