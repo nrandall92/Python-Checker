@@ -2,9 +2,9 @@
 import MySQLdb
 
 
-DATABASE='session'
-DB_USER = 'assist'
-DB_PASSWORD = 'assist'
+DATABASE='Python_Checker'
+DB_USER = 'ROOT'
+DB_PASSWORD = 'PcGc'
 HOST = 'localhost'
 
 def db_connect():
