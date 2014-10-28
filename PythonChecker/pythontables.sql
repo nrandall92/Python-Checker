@@ -11,7 +11,7 @@ USE DATABASE Python_Checker;
 --
 
 
-CREATE TABLE 'Login' (
+CREATE TABLE Login (
 	L_ID int(1) NOT NULL auto_increment,
 	L_Name varchar(35) NOT NULL default '',
 	Password varchar(25) NOT NULL default '',
@@ -20,14 +20,14 @@ CREATE TABLE 'Login' (
 
 
 
-CREATE TABLE 'Projects' (
+CREATE TABLE Projects (
 	P_ID int(20) NOT NULL auto_increment,
 	P_Name varchar(25) NOT NULL default '',
 	PRIMARY KEY (P_ID)
 );
 
 
-CREATE TABLE 'Output' (
+CREATE TABLE Output (
 	O_ID int(20) NOT NULL auto_increment,
 	Project_Name varchar(25) NOT NULL default '',
 	Output_1 varchar(45) default '',
