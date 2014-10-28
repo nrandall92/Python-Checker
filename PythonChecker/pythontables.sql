@@ -12,10 +12,10 @@ USE DATABASE Python_Checker;
 
 
 CREATE TABLE 'Login' (
-	ID int(1) NOT NULL auto_increment,
+	L_ID int(1) NOT NULL auto_increment,
 	L_Name varchar(35) NOT NULL default '',
 	Password varchar(25) NOT NULL default '',
-	PRIMARY KEY ('ID')
+	PRIMARY KEY (L_ID)
 );
 
 
@@ -40,7 +40,7 @@ CREATE TABLE 'Output' (
 	Output_8 varchar(45) default '',
 	Output_9 varchar(45) default '',
 	Output_10, varchar(45) default '',
-	PRIMARY KEY (ID)
+	PRIMARY KEY (O_ID)
 );
 
 INSERT INTO Login VALUES (1, 'Gusty', 'gus');
