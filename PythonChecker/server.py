@@ -6,22 +6,19 @@ app = Flask(__name__)
 
 # Configuration
 
-@app.route('/', methods=['GET', 'POST'])
+@app.route('/home', methods=['GET', 'POST'])
 def mainIndex():
-    if request.method == 'POST':
-      output = run_command('pyfile')
-      print output
-      
-      
-	  
-
-   
-    return render_template('home.html')
   
-@app.route('/Login', methods=['GET', 'POST'])
+  
+  return render_template('home.html')
+    
+   
+
+  
+@app.route('/login', methods=['GET', 'POST'])
 def Login():
    
-    return render_template('Login.html')
+    return render_template('login.html')
 
 @app.route('/results', methods=['GET', 'POST'])
 def results():
