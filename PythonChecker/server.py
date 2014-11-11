@@ -17,8 +17,23 @@ def mainIndex():
   
 @app.route('/login', methods=['GET', 'POST'])
 def Login():
-   
-    return render_template('login.html')
+  global currentUser
+  db = utils.db_connect()
+  cur = db.cursor(cursorclass=MySQLdb.cursors.DictCursor)
+  if request.method == 'POST':
+    if currentUser == '':
+      username = MySQLdb.escape_string(request.form['username'])
+      pw = MySQLdb.escape_string(request.form['pw'])
+      query = "SELECT * FROM Login AS up INNER JOIN users AS u ON up.L_ID = u.id WHERE u.L_Name = '%s' AND up.password = SHA2('%s',0)" % (username, pw)
+      cur.execute(query)
+      if cur.fetchone( ):
+        currentUser = username
+        return redirect(url_for('mainIndex'))
+    else:
+      warn = "You are already logged in as " + currentUser + "!"
+      #return render_template('warning.html', warn = warn)
+  return render_template('login.html', curus = currentUser)
+  
 
 @app.route('/results', methods=['GET', 'POST'])
 def results():
