@@ -3,8 +3,8 @@ import MySQLdb
 
 
 DATABASE='Python_Checker'
-DB_USER = 'ROOT'
-DB_PASSWORD = 'PcGc'
+DB_USER = 'blogUser'
+DB_PASSWORD = 'blogPassword'
 HOST = 'localhost'
 
 def db_connect():
