@@ -35,6 +35,12 @@ def Login():
   return render_template('login.html', curus = currentUser)
   
 
+
+@app.route('/addProject',methods=['GET','POST'])
+def addProject():
+  return render_template('addProject.html')
+
+
 @app.route('/results', methods=['GET', 'POST'])
 def results():
    
