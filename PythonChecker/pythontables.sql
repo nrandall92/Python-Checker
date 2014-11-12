@@ -27,6 +27,7 @@ CREATE TABLE Projects (
 );
 
 
+
 CREATE TABLE Output 
 (
 	O_ID int(20) NOT NULL AUTO_INCREMENT,
@@ -43,6 +44,13 @@ CREATE TABLE Output
 	Output_10 varchar(45),
 	PRIMARY KEY (O_ID)
 );
+
+/*CREATE TABLE Output 
+(
+	O_ID int(20) NOT NULL AUTO_INCREMENT,
+	Project_Name varchar(25) NOT NULL ,
+	PRIMARY KEY (O_ID)
+);*/
 
 INSERT INTO Login VALUES (1, 'Gusty', 'gus');
 INSERT INTO Projects VALUES (1, 'Sample');

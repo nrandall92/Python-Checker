@@ -49,3 +49,81 @@ def results():
 if __name__ == '__main__':
     app.debug = True
     app.run(host='0.0.0.0', port=55200)
+	
+	
+@app.route('editProject', methods = ['POST'])
+def editProject():
+	db = utils.db_connect()
+	cur = db.cursor(cursorclass=MySQLdb.cursors.DictCursor)
+	
+	#get variables from form
+	newName = request.form['projName']
+	prevName = request.form['prevName']
+	inputNum = request.form['inputNum']
+	outputNum = request.form['outputNum']
+	
+	#save project name
+	query = "UPDATE Projects SET P_Name='" + newName + "' Where P_Name='" + prevName +"'"
+	cur.execute(query) 
+	
+	#get and save inputs
+	for x in range (1, inputNum+1):
+		u = 'Input_' + x
+		v = 'input' + x
+		w = request.form[v]
+		
+		#check if row exists, add new row if it doesn't
+		query = "SELECT EXISTS(SELECT 1 FROM " + newName + " WHERE text LIKE " + u + " LIMIT 1"
+		if cur.execute(query):
+			query = "UPDATE " + newName + " SET " + u + "=" + w
+			cur.execute(query)
+		else:
+			query = "ALTER TABLE " + newName + " ADD " + u + " varchar(45)"
+		
+		
+	#delete extra inputs
+	extraInput = inputNum + 1
+	while True:
+		u = 'Input_' + extraInput
+		
+		#check for extra
+		query = "SELECT EXISTS(SELECT 1 FROM " + newName + " WHERE text LIKE " + u + " LIMIT 1"
+		
+		if cur.execute(query):
+			query = "ALTER TABLE " + newName + " DROP " + u
+			cur.execute
+		else:
+			break #ends loop if there was no extra
+		
+		extraInput++
+	
+	#get and save outputs
+	for x in range (1, outputNum+1):
+		u = 'Output_' + x
+		v = 'output' + x
+		w = request.form[v]
+		
+		#check if row exists, add new row if it doesn't
+		query = "SELECT EXISTS(SELECT 1 FROM " + newName + " WHERE text LIKE " + u + " LIMIT 1"
+		if cur.execute(query):
+			query = "UPDATE " + newName + " SET " + u + "=" + w
+			cur.execute(query)
+		else:
+			query = "ALTER TABLE " + newName + " ADD " + u + " varchar(45)"
+		
+		
+	#delete extra outputs
+	extraOutput = outputNum + 1
+	while True:
+		u = 'Output_' + extraInput
+		
+		#check for extra
+		query = "SELECT EXISTS(SELECT 1 FROM " + newName + " WHERE text LIKE " + u + " LIMIT 1"
+		
+		if cur.execute(query):
+			query = "ALTER TABLE " + newName + " DROP " + u
+			cur.execute
+		else:
+			break #ends loop if there was no extra
+		
+		extraOutput++
