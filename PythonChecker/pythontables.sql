@@ -4,7 +4,7 @@
 
 DROP DATABASE IF EXISTS Python_Checker;
 CREATE DATABASE Python_Checker;
-USE DATABASE Python_Checker;
+USE Python_Checker;
 
 -- Creates tables for login and projects
 --
@@ -61,4 +61,4 @@ CREATE TABLE Input
 
 INSERT INTO Login VALUES (1, 'Gusty', 'gus');
 INSERT INTO Projects VALUES (1, 'Sample');
-INSERT INTO Output VALUES (1, 'Sample', '1', '2', '3', '4', '5', '6', '7', '8', '9', '10');
+/*INSERT INTO Output VALUES (1, 'Sample', '1', '2', '3', '4', '5', '6', '7', '8', '9', '10');*/
