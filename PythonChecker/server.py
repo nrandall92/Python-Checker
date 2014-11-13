@@ -10,14 +10,18 @@ currentUser = ''
 
 # Configuration
 
-@app.route('/home', methods=['GET', 'POST'])
+#@app.route('/home', methods=['GET', 'POST'])
+@app.route('/')
 def mainIndex():
-  
-  
   return render_template('home.html')
-    
-   
 
+@app.route('/home')
+def home():
+  return render_template('home.html')
+
+@app.route('/admin')
+def admin():
+  return render_template('admin.html')
   
 @app.route('/login', methods=['GET', 'POST'])
 def Login():
@@ -28,11 +32,11 @@ def Login():
     if currentUser == '':
       username = MySQLdb.escape_string(request.form['username'])
       pw = MySQLdb.escape_string(request.form['pw'])
-      query = "SELECT * FROM Login AS up INNER JOIN users AS u ON up.L_ID = u.id WHERE u.L_Name = '%s' AND up.password = SHA2('%s',0)" % (username, pw)
+      query = "SELECT * FROM Login WHERE L_Name = '%s' AND Password = SHA2('%s',0)" % (username, pw)
       cur.execute(query)
       if cur.fetchone( ):
         currentUser = username
-        return redirect(url_for('mainIndex'))
+        return redirect(url_for('admin'))
     else:
       warn = "You are already logged in as " + currentUser + "!"
       #return render_template('warning.html', warn = warn)
@@ -52,7 +56,7 @@ def results():
   
 if __name__ == '__main__':
     app.debug = True
-    app.run(host='0.0.0.0', port=55200)
+    app.run(host='0.0.0.0',port=3000)
 	
 	
 @app.route('editProject', methods = ['POST'])
@@ -99,7 +103,7 @@ def editProject():
 		else:
 			break #ends loop if there was no extra
 		
-		extraInput++
+		extraInput = extraInput + 1
 	
 	#get and save outputs
 	for x in range (1, outputNum+1):
@@ -130,4 +134,4 @@ def editProject():
 		else:
 			break #ends loop if there was no extra
 		
-		extraOutput++
+		extraOutput = extraOutput + 1
