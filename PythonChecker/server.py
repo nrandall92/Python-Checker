@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, redirect, url_for, session
+from flask import Flask, render_template, request,session, redirect, url_for, session
 import MySQLdb
 import utils
 #---needed for system calls ---
@@ -24,24 +24,24 @@ def admin():
   return render_template('admin.html')
   
 @app.route('/login', methods=['GET', 'POST'])
-def Login():
+def login():
   global currentUser
   db = utils.db_connect()
   cur = db.cursor(cursorclass=MySQLdb.cursors.DictCursor)
   if request.method == 'POST':
     if currentUser == '':
       username = MySQLdb.escape_string(request.form['username'])
-      pw = MySQLdb.escape_string(request.form['pw'])
-      query = "SELECT * FROM Login WHERE L_Name = '%s' AND Password = SHA2('%s',0)" % (username, pw)
+      pw = MySQLdb.escape_string(request.form['password'])
+      query = "SELECT * FROM Login WHERE L_Name = '%s' AND Password = '%s' " % (username,pw)
       cur.execute(query)
       if cur.fetchone( ):
         currentUser = username
-        return redirect(url_for('admin'))
+        return redirect(url_for('mainIndex'))
     else:
-      warn = "You are already logged in as " + currentUser + "!"
+      print "You are already logged in as " + currentUser + "!"
       #return render_template('warning.html', warn = warn)
-  return render_template('login.html', curus = currentUser)
-  
+  return render_template('login.html')
+    
 
 
 @app.route('/addProject',methods=['GET','POST'])
@@ -135,3 +135,4 @@ def editProject():
 			break #ends loop if there was no extra
 		
 		extraOutput = extraOutput + 1
+
