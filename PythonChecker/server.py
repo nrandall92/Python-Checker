@@ -1,8 +1,12 @@
-from flask import Flask, render_template, request
+from flask import Flask, render_template, request, redirect, url_for, session
+import MySQLdb
+import utils
 #---needed for system calls ---
 #import subprocess
 
 app = Flask(__name__)
+
+currentUser = ''
 
 # Configuration
 
