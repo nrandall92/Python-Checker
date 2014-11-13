@@ -44,9 +44,9 @@ def login():
     
 
 
-@app.route('/addProject',methods=['GET','POST'])
+"""@app.route('/addProject',methods=['GET','POST'])
 def addProject():
-  return render_template('addProject.html')
+  return render_template('addProject.html')"""
 
 
 @app.route('/results', methods=['GET', 'POST'])
@@ -59,6 +59,50 @@ if __name__ == '__main__':
     app.run(host='0.0.0.0',port=3000)
 	
 	
+@app.route('addProject', methods = ['POST'])
+def addProject():
+	db = utils.db_connect()
+	cur = db.cursor(cursorclass=MySQLdb.cursors.DictCursor)
+	
+	#get variables from form
+	projName = request.form['projName']
+	inputNum = request.form['inputNum']
+	outputNum = request.form['outputNum']
+	
+	#save project name
+	query = "CREATE TABLE " + projName + " ( "
+	#cur.execute(query) 
+	
+	#get and save inputs
+	for x in range (1, inputNum+1):
+		u = 'Input_' + x
+		v = 'input' + x
+		w = request.form[v]
+		
+		query = query + u + " varchar(45), "
+	
+	
+	#get and save outputs
+	for x in range (1, outputNum):
+		u = 'Output_' + x
+		v = 'output' + x
+		w = request.form[v]
+		
+		query = query + u + " varchar(45), "
+	
+	#get and save last input
+	lastU = 'Output_' + outputNum
+	lastV = 'output' + outputNum
+	lastW = request.form[lastV]
+	query = query + lastU + "varchar(45) )"	
+		
+	#run query
+	cur.execute(query)
+		
+		
+		
+		
+		
 @app.route('editProject', methods = ['POST'])
 def editProject():
 	db = utils.db_connect()
@@ -136,3 +180,32 @@ def editProject():
 		
 		extraOutput = extraOutput + 1
 
+		
+@app.route('editForm', methods = ['POST'])
+def editForm():
+	numInputs = 1
+	numOutputs = 1
+	projName = request.form("projName")
+	inputs[] = ''
+	outputs[] = ''
+	
+	#get inputs
+	while True:
+		query = "SELECT Input_" + numInputs + " FROM " + projName
+		if cur.execute(query):
+			inputs[numInputs] = cur.execute(query)
+		else:
+			numInputs = numInputs - 1
+			break;
+			
+	#get outputs
+	while True:
+		query = "SELECT Output_" + numOutputs + " FROM " + projName
+		if cur.execute(query):
+			inputs[numOutputs] = cur.execute(query)
+		else:
+			numOutputs = numOutputs - 1
+			break;
+			
+			
+	return render_template('editProject.html', projName = projName, numInputs = numInputs, numOutputs = numOutputs, inputs = inputs, outputs = outputs)
