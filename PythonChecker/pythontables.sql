@@ -32,7 +32,7 @@ CREATE TABLE Output
 (
 	O_ID int(20) NOT NULL AUTO_INCREMENT,
 	Project_Name varchar(25) NOT NULL ,
-	Output_1 varchar(45),
+	/*Output_1 varchar(45),
 	Output_2 varchar(45),
 	Output_3 varchar(45),
 	Output_4 varchar(45),
@@ -41,7 +41,14 @@ CREATE TABLE Output
 	Output_7 varchar(45),
 	Output_8 varchar(45),
 	Output_9 varchar(45),
-	Output_10 varchar(45),
+	Output_10 varchar(45),*/
+	PRIMARY KEY (O_ID)
+);
+
+CREATE TABLE Input 
+(
+	O_ID int(20) NOT NULL AUTO_INCREMENT,
+	Project_Name varchar(25) NOT NULL ,
 	PRIMARY KEY (O_ID)
 );
 
