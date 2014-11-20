@@ -1,0 +1,9 @@
+How to Get This Working
+- Make sure flask and MySQL are installed
+- Give permissions to root
+- Sign in with mysql -u root -p
+It will ask for password, leave it blank.
+- Grant priviledges to root
+GRANT PERMISSION ON Python_Checker to 'root'@'localhost'IDENTIFIED BY 'password';
+This now makes it so when you do mysql -u root -p you must use password to sign in.
+After this you should be able to access the database when you login.
