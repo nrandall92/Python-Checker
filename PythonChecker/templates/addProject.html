@@ -46,16 +46,13 @@
       
       </div>
     <h3>&nbsp;Add A Project</h3>
-	<form>
+	<form name = "input" method = "post">
 	<table id=outputForm>
-	<tr><td>Project Name: </td><td><input type="text" id="projName"></td></tr>
-	<tr><td>Output #1: </td><td><input onchange="myFunction()" type="text" id="outputName"></td></tr>
+	<tr><td>Project Name: </td><td><input type="text" id="projName" name= "projName"></td></tr>
+	<tr><td>Output #1: </td><td><input type="text" id="outputName" name="outputName"></td></tr>
 	</table>
-	<button value="submit">Submit</button></br></br></br>
-	<p id="prevInputs" hidden>0</p>
-	<p id="prevOutputs" hidden>0</p>
+	<input type="submit" value="Submit"></br></br></br>
 	</form>
-	<script type="text/javascript" src="{{ url_for('static', filename='addProject.js') }}"></script>
 	
     <div id="content_footer"></div>
     <div id="footer">
