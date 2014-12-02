@@ -57,17 +57,17 @@ def addProject():
 	db = utils.db_connect()
 	cur = db.cursor(cursorclass=MySQLdb.cursors.DictCursor)
 	
-	#if request.method == 'POST':
-  #get variables from form
-	projectName = request.form['projName']
-	#outputName = request.form['outputName']
+	if request.method == 'POST':
+  		#get variables from form
+		projectName = request.form['projName']
+		outputName = request.form['outputName']
 	
 		#save project name
-	#query = "INSERT INTO Output (Project_Name, Output_1) VALUES ('%s', '%s')" % (projName, outputName) 
+		query = "INSERT INTO Output (Project_Name, Output_1) VALUES ('%s', '%s')" % (projectName, outputName) 
 	
-	#run query
-	#cur.execute(query)
-	#db.commit()
+		#run query
+		cur.execute(query)
+		db.commit()
 	return render_template('addProject.html')	
 		
 		
