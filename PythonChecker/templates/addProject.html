@@ -30,8 +30,8 @@
           <!--{% if username %}
             <li {% if selectedMenu == "Stock Report" %} class="selected" {% endif %}><a href="/stockReport">Stock Report</a></li>
           {% endif %}-->
-          <li  class="selected" {% endif %}><a href="login.html">Admin</a></li>
-          <!--<li  class="selected" {% endif %}><a href="/login.html">Results</a></li> -->
+          <li  class="selected" ><a href="login.html">Admin</a></li>
+          <!--<li  class="selected" ><a href="/login.html">Results</a></li> -->
           
         </ul>
       </div>
@@ -49,8 +49,7 @@
 	<form>
 	<table id=outputForm>
 	<tr><td>Project Name: </td><td><input type="text" id="projName"></td></tr>
-	<tr><td>Number of Inputs: </td><td><input onchange="myFunction()" type="text" id="inputNum"></td></tr>
-	<tr><td>Number of Outputs: </td><td><input onchange="myFunction()" type="text" id="outputNum"></td></tr>
+	<tr><td>Output #1: </td><td><input onchange="myFunction()" type="text" id="outputName"></td></tr>
 	</table>
 	<button value="submit">Submit</button></br></br></br>
 	<p id="prevInputs" hidden>0</p>
