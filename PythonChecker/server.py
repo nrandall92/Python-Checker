@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request,session, redirect, url_for, session
+from flask import Flask, render_template, request,session, redirect, url_for, session, request
 import MySQLdb
 import utils
 #---needed for system calls ---
@@ -36,74 +36,44 @@ def login():
       cur.execute(query)
       if cur.fetchone( ):
         currentUser = username
-        return redirect(url_for('mainIndex'))
+        return redirect(url_for('admin'))
     else:
       print "You are already logged in as " + currentUser + "!"
       #return render_template('warning.html', warn = warn)
   return render_template('login.html')
     
 
-
-"""@app.route('/addProject',methods=['GET','POST'])
-def addProject():
-  return render_template('addProject.html')"""
-
-
 @app.route('/results', methods=['GET', 'POST'])
 def results():
    
     return render_template('results.html')
   
-if __name__ == '__main__':
-    app.debug = True
-    app.run(host='0.0.0.0',port=3000)
+
 	
-	
-@app.route('addProject', methods = ['POST'])
+  
+
+@app.route('/addProject', methods = ['POST', 'GET'])
 def addProject():
 	db = utils.db_connect()
 	cur = db.cursor(cursorclass=MySQLdb.cursors.DictCursor)
 	
-	#get variables from form
-	projName = request.form['projName']
-	inputNum = request.form['inputNum']
-	outputNum = request.form['outputNum']
+	#if request.method == 'POST':
+  #get variables from form
+	projectName = request.form['projName']
+	#outputName = request.form['outputName']
 	
-	#save project name
-	query = "CREATE TABLE " + projName + " ( "
-	#cur.execute(query) 
+		#save project name
+	#query = "INSERT INTO Output (Project_Name, Output_1) VALUES ('%s', '%s')" % (projName, outputName) 
 	
-	#get and save inputs
-	for x in range (1, inputNum+1):
-		u = 'Input_' + x
-		v = 'input' + x
-		w = request.form[v]
-		
-		query = query + u + " varchar(45), "
-	
-	
-	#get and save outputs
-	for x in range (1, outputNum):
-		u = 'Output_' + x
-		v = 'output' + x
-		w = request.form[v]
-		
-		query = query + u + " varchar(45), "
-	
-	#get and save last input
-	lastU = 'Output_' + outputNum
-	lastV = 'output' + outputNum
-	lastW = request.form[lastV]
-	query = query + lastU + "varchar(45) )"	
-		
 	#run query
-	cur.execute(query)
+	#cur.execute(query)
+	#db.commit()
+	return render_template('addProject.html')	
 		
 		
 		
 		
-		
-@app.route('editProject', methods = ['POST'])
+'''@app.route('editProject', methods = ['GET' ,'POST'])
 def editProject():
 	db = utils.db_connect()
 	cur = db.cursor(cursorclass=MySQLdb.cursors.DictCursor)
@@ -186,8 +156,8 @@ def editForm():
 	numInputs = 1
 	numOutputs = 1
 	projName = request.form("projName")
-	inputs[] = ''
-	outputs[] = ''
+	inputs = []
+	outputs = []
 	
 	#get inputs
 	while True:
@@ -208,4 +178,8 @@ def editForm():
 			break;
 			
 			
-	return render_template('editProject.html', projName = projName, numInputs = numInputs, numOutputs = numOutputs, inputs = inputs, outputs = outputs)
+	return render_template('editProject.html', projName = projName, numInputs = numInputs, numOutputs = numOutputs, inputs = inputs, outputs = outputs)'''
+
+if __name__ == '__main__':
+    app.debug = True
+    app.run(host='0.0.0.0',port=3000)
