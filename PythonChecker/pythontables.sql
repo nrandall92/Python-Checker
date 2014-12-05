@@ -8,6 +8,7 @@ DROP TABLE Input;
 DROP TABLE Projects;
 DROP IF EXISTS Python_Checker;
 CREATE DATABASE Python_Checker;
+GRANT ALL PRIVILEGES ON Python_Checker to 'root'@'localhost' WITH GRANT OPTION IDENTIFIED BY 'password';
 USE Python_Checker;
 
 -- Creates tables for login and projects
