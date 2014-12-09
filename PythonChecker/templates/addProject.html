@@ -2,14 +2,15 @@
 <html>
 
 <head>
-
+  {% if username %}
+    <title>Hello {{username}}!</title>
+  {% else %}
     <title>Python Checker</title>
-
+  {% endif %}
   <meta name="description" content="website description" />
   <meta name="keywords" content="website keywords, website keywords" />
   <meta http-equiv="content-type" content="text/html; charset=windows-1252" />
-  <link rel="stylesheet" type="text/css" href="style.css" title="style" />
-  <link rel="stylesheet" href="css/font-awesome.min.css">
+  <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/style.css') }}" title="style" />
 </head>
 
 <body>
@@ -19,33 +20,29 @@
         <div id="logo_text">
           <!-- class="logo_colour", allows you to change the colour of the text -->
           <h1><a href="/">Python<span class="logo_colour">Checker!</span></a></h1>
-          <h2>Check Your Python Output</h2>
+          <h2>Check Your Python Code</h2>
         </div>
       </div>
       <div id="menubar">
         <ul id="menu">
           <!-- put class="selected" in the li tag for the selected page - to highlight which page you're on -->
-          <li {% if selectedMenu == "Home" %} class="selected" {% endif %}>
-          <a href="home.html">Home</a></li>
-          <!--{% if username %}
-            <li {% if selectedMenu == "Stock Report" %} class="selected" {% endif %}><a href="/stockReport">Stock Report</a></li>
-          {% endif %}-->
-          <li  class="selected" ><a href="login.html">Admin</a></li>
-          <!--<li  class="selected" ><a href="/login.html">Results</a></li> -->
+          <li class="selected">
+          <a href="/admin">Admin Home</a></li> 
           
+          &nbsp;
+          <li class="selected">
+          <a href="/addProject">Add Project</a></li>
+          
+          &nbsp;
+          <li class="selected" >
+          <a href="/admin">Remove Project</a></li>
+         
         </ul>
       </div>
-
     </div>
     <div id="site_content">
-      <div class="sidebar">
-        <!-- insert your sidebar items here -->
-        
-        
-       
-      
-      </div>
-    <h3>&nbsp;Add A Project</h3>
+		
+  <h3>&nbsp;Add A Project</h3>
 	<form name = "input" method = "post">
 	<table id=outputForm>
 	<tr><td>Project Name: </td><td><input type="text" id="projName" name= "projName"></td></tr>
